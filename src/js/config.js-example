@@ -6,7 +6,7 @@ var CONFIG = {
     APP_NAME: '',
 
     // URL of the fixmystreet install to report to
-    FMS_URL: '',
+    FMS_URL: ' ',
 
     // namespace for storing drafts etc in. Should not need to change
     NAMESPACE: 'fixmystreet',
