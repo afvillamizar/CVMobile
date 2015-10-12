@@ -20,7 +20,7 @@
     <access origin="ecn.t1.tiles.virtualearth.net"/>
     <access origin="ecn.t2.tiles.virtualearth.net"/>
     <access origin="ecn.t3.tiles.virtualearth.net"/>
-    <access origin="mapit.mysociety.org"/>
+    <access origin="mapitcolombia.cloudapp.net"/>
 
     <!-- Replace this with the hostname of your FMS installation -->
     <!--<access origin="fixmystreet.example.org"/>-->

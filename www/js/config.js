@@ -26,7 +26,7 @@ var CONFIG = {
     UPLOAD_TIMEOUT: 120000,
 
     // Set to 1 to log debug messages to the console
-    DEBUG: 1,
+    DEBUG: 0,
 
     // Whether the FMS installation is within the United Kingdom. Should not need to change.
     isUK: 0
