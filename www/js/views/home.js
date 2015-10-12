@@ -19,7 +19,7 @@
                */
 
                 $('#locating').show();
-
+				alert('hola');
             },
 
             afterDisplay: function() {
