@@ -23,8 +23,8 @@
     <access origin="mapitcolombia.cloudapp.net"/>
 
     <!-- Replace this with the hostname of your FMS installation -->
-    <!--<access origin="fixmystreet.example.org"/>-->
-	<access origin="ciudadanosvisibles.cloudapp.net"/>
+    <access origin="fixmystreet.example.org"/>
+
     <preference name="android-minSdkVersion" value="16" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarOverlaysWebView" value="false" />

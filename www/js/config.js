@@ -3,10 +3,10 @@ var CONFIG = {
     LANGUAGE: 'en',
 
     // Name of app to use in alert dialog titles amongst other things
-    APP_NAME: 'FixMyStreet',
+    APP_NAME: 'Ciudadanos Visibles',
 
     // URL of the fixmystreet install to report to. See also config.xml-example
-    FMS_URL: 'http://fixmystreet.example.org/',
+    FMS_URL: 'http://ciudadanosvisibles.cloudapp.net/',
 
     // Name of the cobrand to use for templates, stylesheets etc.
     // Cobrand files should be placed in a new directory within www/cobrands/
@@ -26,8 +26,8 @@ var CONFIG = {
     UPLOAD_TIMEOUT: 120000,
 
     // Set to 1 to log debug messages to the console
-    DEBUG: 1,
+    DEBUG: 0,
 
     // Whether the FMS installation is within the United Kingdom. Should not need to change.
-    //isUK: 0
+    isUK: 0
 };
