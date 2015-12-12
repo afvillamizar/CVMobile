@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="org.mysociety.FixMyStreet" android-versionCode="41" version="2.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="net.cloudapp.ciudadanosvisibles" android-versionCode="41" version="2.0.6" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0"  xmlns:vs="http://schemas.microsoft.com/appx/2014/htmlapps">
     <name>FMS Ciudadanos Visibles</name>
     <description>
         Reporte en Ciudadanos Visibles
@@ -20,11 +20,18 @@
     <access origin="ecn.t1.tiles.virtualearth.net"/>
     <access origin="ecn.t2.tiles.virtualearth.net"/>
     <access origin="ecn.t3.tiles.virtualearth.net"/>
-    <access origin="mapitcolombia.cloudapp.net"/>
+  <!--<access origin="mapit.mysociety.org"/>-->
+  <!--<access origin="*"/>
+  <access origin="http://*"/>-->
+
+
+   <access origin="mapitcolombia.cloudapp.net"/> 
 
     <!-- Replace this with the hostname of your FMS installation -->
     <!--<access origin="fixmystreet.example.org"/>-->
-	<access origin="ciudadanosvisibles.cloudapp.net"/>
+ 	<access origin="ciudadanosvisibles.cloudapp.net"/> 
+   	<access origin="192.168.1.15"/> 
+	<!--<access origin="fixmystreet.com"/>-->
     <preference name="android-minSdkVersion" value="16" />
     <preference name="orientation" value="portrait" />
     <preference name="StatusBarOverlaysWebView" value="false" />
@@ -33,7 +40,19 @@
     <!-- If you change the background colour of the app, change this value to match. -->
     <preference name="StatusBarBackgroundColor" value="#F6BE41" />
 
-    <platform name="android">
+  
+     <plugin name="cordova-plugin-whitelist" version="1" />
+  <allow-intent href="http://*/*" />
+  <allow-intent href="https://*/*" />
+  <allow-intent href="tel:*" />
+  <allow-intent href="sms:*" />
+  <allow-intent href="mailto:*" />
+  <allow-intent href="geo:*" />
+  <allow-navigation href="http://*/*" />
+  <allow-navigation href="https://*/*" />
+  <allow-navigation href="ciudadanosvisibles.cloudapp.net"/>
+
+  <platform name="android">
         <icon src="res/android/ldpi.png" density="ldpi" />
         <icon src="res/android/mdpi.png" density="mdpi" />
         <icon src="res/android/hdpi.png" density="hdpi" />
@@ -52,4 +71,17 @@
         <splash src="res/ios/Default@2x.png" width="640" height="960"/>
         <splash src="res/ios/Default-568h@2x.png" width="640" height="1136"/>
      </platform>
+	  <vs:plugin name="cordova-plugin-whitelist" version="1.0.0" />
+  <vs:plugin name="cordova-plugin-camera" version="1.2.0" />
+  <vs:plugin name="cordova-plugin-device" version="1.0.1" />
+  <vs:plugin name="cordova-plugin-file" version="3.0.0" />
+  <vs:plugin name="cordova-plugin-dialogs" version="1.1.1" />
+  <vs:plugin name="cordova-plugin-file-transfer" version="1.3.0" />
+  <vs:plugin name="cordova-plugin-geolocation" version="1.0.1" />
+  <vs:plugin name="cordova-plugin-inappbrowser" version="1.0.1" />
+  <vs:plugin name="cordova-plugin-media" version="1.0.1" />
+  <vs:plugin name="cordova-plugin-media-capture" version="1.0.1" />
+  <vs:plugin name="cordova-plugin-network-information" version="1.0.1" />
+  <vs:plugin name="cordova-plugin-splashscreen" version="2.1.0" />
+  <vs:plugin name="cordova-plugin-statusbar" version="1.0.1" />
 </widget>

@@ -18,7 +18,7 @@
                     this.trigger('search_failed', { msg: FMS.strings.missing_location } );
                     return false;
                 }
-
+				alert(q);
                 var url = CONFIG.FMS_URL + '/ajax/lookup_location?term=' + q;
 
                 var x = $.ajax( {
@@ -27,6 +27,7 @@
                     timeout: 30000,
                     success: function(data, status) {
                         if ( status == 'success' ) {
+							
                             if ( data.latitude ) {
                                 that.trigger('search_located', { coordinates: { latitude: data.latitude, longitude: data.longitude } } );
                             } else if ( data.suggestions ) {
@@ -35,10 +36,18 @@
                                 that.trigger( 'search_failed', { msg: data.error } );
                             }
                         } else {
+							
                             that.trigger( 'search_failed', { msg: FMS.strings.location_problem } );
                         }
                     },
                     error: function(data, status, errorThrown) {
+						alert(data);
+						alert(status);
+						alert(errorThrown);
+						alert(url);
+						for (var mes in data){
+							alert("El dato " + mes + " tiene " + data[mes] + "");
+						}
                         that.trigger( 'search_failed', { msg: FMS.strings.location_problem } );
                     }
                 } );
@@ -50,30 +59,38 @@
                 var that = this;
                 this.watch_id = navigator.geolocation.watchPosition(
                     function(location) {
+						 
                         if ( that.watch_id === undefined ) { FMS.printDebug( 'no watch id' ); return; }
 
                         if ( minAccuracy && location.coords.accuracy > minAccuracy ) {
+							alert("location accrancy" +location.coords.accuracy);
                             that.trigger('gps_locating', location.coords.accuracy);
                         } else {
                             that.locating = 0;
                             navigator.geolocation.clearWatch( that.watch_id );
                             delete that.watch_id;
-
+							
+						for (var mes in location.coords){
+							alert("El dato " + mes + " tiene " + location.coords[mes] + "");
+						}
                             if ( skipLocationCheck ) {
+								alert("skipLocationCheck coords" );
                                 that.trigger('gps_located', { coordinates: location.coords } );
                             } else {
+								alert("skipLocationCheck else" +location.coords);
                                 that.check_location(location.coords, false);
                             }
                         }
                     },
                     function(err) {
+						alert(PositionError.PERMISSION_DENIED); 
                         if ( that.watch_id === undefined ) { return; }
                         that.locating = 0;
                         navigator.geolocation.clearWatch( that.watch_id );
                         delete that.watch_id;
                         var errorMsg = FMS.strings.geolocation_failed;
 
-                        if ( err && err.code == PositionError.PERMISSION_DENIED ) {
+						if ( err && err.code == PositionError.PERMISSION_DENIED ) {
                             errorMsg = FMS.strings.geolocation_denied;
                         }
                         that.trigger('gps_failed', { msg: errorMsg } );
@@ -110,7 +127,7 @@
                 $.ajax( {
                     url: CONFIG.FMS_URL + 'report/new/ajax',
                     global: showSpinner,
-                    dataType: 'json',
+                    dataType: 'jsonp',
                     data: {
                         latitude: coords.latitude,
                         longitude: coords.longitude
@@ -118,12 +135,18 @@
                     timeout: 10000,
                     success: function(data) {
                         if (data.error) {
+							for (var mes in data){
+							alert("El dato if" + mes + " tiene " + data[mes] + "");
+							}
                             that.trigger('gps_failed', { msg: data.error } );
                             return;
                         }
                         that.trigger('gps_located', { coordinates: coords, details: data } );
                     },
                     error: function (data, status, errorThrown) {
+						for (var mes in data){
+							alert("El dato error" + mes + " tiene " + data[mes] + "");
+						}
                         that.trigger('gps_failed', { msg: FMS.strings.location_check_failed } );
                     }
                 } );

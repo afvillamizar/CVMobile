@@ -6,7 +6,7 @@ var CONFIG = {
     APP_NAME: 'Ciudadanos Visibles',
 
     // URL of the fixmystreet install to report to. See also config.xml-example
-    FMS_URL: 'http://ciudadanosvisibles.cloudapp.net/',
+    FMS_URL: 'http://fixmystreet.com/',
 
     // Name of the cobrand to use for templates, stylesheets etc.
     // Cobrand files should be placed in a new directory within www/cobrands/
