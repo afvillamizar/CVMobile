@@ -1,14 +1,14 @@
-﻿// Copyright (c) Microsoft Open Technologies, Inc. All rights reserved.
-// Licensed under the Apache License, Version 2.0. 
-// See http://www.apache.org/licenses/LICENSE-2.0.html.
-// JavaScript Dynamic Content shim for Windows Store apps
+﻿// Copyright (c) Microsoft Open Technologies, Inc. Todos los derechos reservados.
+// Concedido bajo licencia Apache, versión 2.0. 
+// Vea http://www.apache.org/licenses/LICENSE-2.0.html.
+// Correcciones de compatibilidad (shim) de contenido dinámico de JavaScript para aplicaciones de la Tienda Windows
 (function () {
 
     if (window.MSApp && MSApp.execUnsafeLocalFunction) {
 
-        // Some nodes will have an "attributes" property which shadows the Node.prototype.attributes property
-        //  and means we don't actually see the attributes of the Node (interestingly the VS debug console
-        //  appears to suffer from the same issue).
+        // Algunos nodos tendrán una propiedad "attributes" que prevalece sobre la propiedad Node.prototype.attributes
+        //  y significa que, realmente, no vemos los atributos del nodo (curiosamente, la consola de depuración de Visual Studio
+        //  parece tener el mismo problema).
         //
         var Element_setAttribute = Object.getOwnPropertyDescriptor(Element.prototype, "setAttribute").value;
         var Element_removeAttribute = Object.getOwnPropertyDescriptor(Element.prototype, "removeAttribute").value;
@@ -25,7 +25,7 @@
             try {
                 Element_setAttribute.call(element, attribute, value);
             } catch (e) {
-                // ignore
+                // Omitir
             }
         }
 
@@ -96,7 +96,7 @@
             function cleanseAttributes(element) {
                 var attributes = getAttributes(element);
                 if (attributes && attributes.length) {
-                    // because the attributes collection is live it is simpler to queue up the renames
+                    // Puesto que la colección de atributos está activa, es más sencillo poner en cola los cambios de nombre
                     var events;
                     for (var i = 0, len = attributes.length; i < len; i++) {
                         var attribute = attributes[i];

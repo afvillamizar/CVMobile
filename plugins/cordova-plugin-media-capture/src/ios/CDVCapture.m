@@ -516,7 +516,7 @@
         result = [self processImage:image type:cameraPicker.mimeType forCallbackId:callbackId];
     } else if ([mediaType isEqualToString:(NSString*)kUTTypeMovie]) {
         // process video
-        NSString* moviePath = [[info objectForKey:UIImagePickerControllerMediaURL] path];
+        NSString* moviePath = [(NSURL *)[info objectForKey:UIImagePickerControllerMediaURL] path];
         if (moviePath) {
             result = [self processVideo:moviePath forCallbackId:callbackId];
         }
@@ -544,12 +544,18 @@
 
 @implementation CDVAudioNavigationController
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
-    - (NSUInteger)supportedInterfaceOrientations
-    {
-        // delegate to CVDAudioRecorderViewController
-        return [self.topViewController supportedInterfaceOrientations];
-    }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    // delegate to CVDAudioRecorderViewController
+    return [self.topViewController supportedInterfaceOrientations];
+}
+#else
+- (NSUInteger)supportedInterfaceOrientations
+{
+    // delegate to CVDAudioRecorderViewController
+    return [self.topViewController supportedInterfaceOrientations];
+}
 #endif
 
 @end
@@ -709,7 +715,8 @@
     NSURL* fileURL = [NSURL fileURLWithPath:filePath isDirectory:NO];
 
     // create AVAudioPlayer
-    self.avRecorder = [[AVAudioRecorder alloc] initWithURL:fileURL settings:nil error:&err];
+    NSDictionary *recordSetting = [[NSMutableDictionary alloc] init];
+    self.avRecorder = [[AVAudioRecorder alloc] initWithURL:fileURL settings:recordSetting error:&err];
     if (err) {
         NSLog(@"Failed to initialize AVAudioRecorder: %@\n", [err localizedDescription]);
         self.avRecorder = nil;
@@ -724,15 +731,24 @@
     }
 }
 
-#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 60000
-    - (NSUInteger)supportedInterfaceOrientations
-    {
-        NSUInteger orientation = UIInterfaceOrientationMaskPortrait; // must support portrait
-        NSUInteger supported = [captureCommand.viewController supportedInterfaceOrientations];
-
-        orientation = orientation | (supported & UIInterfaceOrientationMaskPortraitUpsideDown);
-        return orientation;
-    }
+#if __IPHONE_OS_VERSION_MAX_ALLOWED >= 90000
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
+{
+    UIInterfaceOrientationMask orientation = UIInterfaceOrientationMaskPortrait;
+    UIInterfaceOrientationMask supported = [captureCommand.viewController supportedInterfaceOrientations];
+    
+    orientation = orientation | (supported & UIInterfaceOrientationMaskPortraitUpsideDown);
+    return orientation;
+}
+#else
+- (NSUInteger)supportedInterfaceOrientations
+{
+    NSUInteger orientation = UIInterfaceOrientationMaskPortrait; // must support portrait
+    NSUInteger supported = [captureCommand.viewController supportedInterfaceOrientations];
+    
+    orientation = orientation | (supported & UIInterfaceOrientationMaskPortraitUpsideDown);
+    return orientation;
+}
 #endif
 
 - (void)viewDidUnload
@@ -754,24 +770,26 @@
         self.recordButton.accessibilityTraits &= ~[self accessibilityTraits];
         [self.recordingView setHidden:NO];
         __block NSError* error = nil;
+
+        __weak CDVAudioRecorderViewController* weakSelf = self;
         
         void (^startRecording)(void) = ^{
-            [self.avSession setCategory:AVAudioSessionCategoryRecord error:&error];
-            [self.avSession setActive:YES error:&error];
+            [weakSelf.avSession setCategory:AVAudioSessionCategoryRecord error:&error];
+            [weakSelf.avSession setActive:YES error:&error];
             if (error) {
                 // can't continue without active audio session
-                self.errorCode = CAPTURE_INTERNAL_ERR;
-                [self dismissAudioView:nil];
+                weakSelf.errorCode = CAPTURE_INTERNAL_ERR;
+                [weakSelf dismissAudioView:nil];
             } else {
-                if (self.duration) {
-                    self.isTimed = true;
-                    [self.avRecorder recordForDuration:[duration doubleValue]];
+                if (weakSelf.duration) {
+                    weakSelf.isTimed = true;
+                    [weakSelf.avRecorder recordForDuration:[duration doubleValue]];
                 } else {
-                    [self.avRecorder record];
+                    [weakSelf.avRecorder record];
                 }
-                [self.timerLabel setText:@"0.00"];
-                self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:self selector:@selector(updateTime) userInfo:nil repeats:YES];
-                self.doneButton.enabled = NO;
+                [weakSelf.timerLabel setText:@"0.00"];
+                weakSelf.timer = [NSTimer scheduledTimerWithTimeInterval:0.5f target:weakSelf selector:@selector(updateTime) userInfo:nil repeats:YES];
+                weakSelf.doneButton.enabled = NO;
             }
             UIAccessibilityPostNotification(UIAccessibilityLayoutChangedNotification, nil);
         };
@@ -786,8 +804,8 @@
                     startRecording();
                 } else {
                     NSLog(@"Error creating audio session, microphone permission denied.");
-                    self.errorCode = CAPTURE_INTERNAL_ERR;
-                    [self dismissAudioView:nil];
+                    weakSelf.errorCode = CAPTURE_INTERNAL_ERR;
+                    [weakSelf dismissAudioView:nil];
                 }
             }];
 #pragma clang diagnostic pop
@@ -816,8 +834,8 @@
     }
     if (self.duration && self.isTimed) {
         // VoiceOver announcement so user knows timed recording has finished
-        BOOL isUIAccessibilityAnnouncementNotification = (&UIAccessibilityAnnouncementNotification != NULL);
-        if (isUIAccessibilityAnnouncementNotification) {
+        //BOOL isUIAccessibilityAnnouncementNotification = (&UIAccessibilityAnnouncementNotification != NULL);
+        if (UIAccessibilityAnnouncementNotification) {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 500ull * NSEC_PER_MSEC), dispatch_get_main_queue(), ^{
                     UIAccessibilityPostNotification(UIAccessibilityAnnouncementNotification, PluginLocalizedString(captureCommand, @"timed recording complete", nil));
                 });

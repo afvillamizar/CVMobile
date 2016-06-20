@@ -92,7 +92,7 @@
                     that.model.set('file', file.toURL());
                     FMS.saveCurrentDraft();
 
-                    $('#photo-next-btn .ui-btn-text').text('Next');
+                    $('#photo-next-btn .ui-btn-text').text('Siguiente');
                     $('#id_photo_button').parents('.ui-btn').hide();
                     $('#id_existing').parents('.ui-btn').hide();
                     $('#photo').show();
@@ -126,7 +126,7 @@
                     FMS.saveCurrentDraft(true);
                     $('#photo').attr('src', 'images/placeholder-photo.png').addClass('placeholder').removeClass('small');
 
-                    $('#photo-next-btn .ui-btn-text').text('Skip');
+                    $('#photo-next-btn .ui-btn-text').text('Omitir');
                     $('#id_photo_button').parents('.ui-btn').show();
                     $('#id_existing').parents('.ui-btn').show();
                 });

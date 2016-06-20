@@ -69,10 +69,11 @@ var tpl = {
 (function (FMS, Backbone, _, $) {
     _.extend(FMS, {
         templates: [
-            'home', 'help', 'initial_help', 'around', 'offline', 'save_offline', 'reports', 'login', 'address_search', 'existing', 'photo', 'details', 'details_extra', 'submit', 'submit_email', 'submit_name', 'submit_set_password', 'submit_password', 'submit_confirm', 'sent'
+            'home', 'help', 'help_entidades', 'initial_help', 'around', 'offline', 'save_offline', 'reports', 'login', 'address_search', 'existing', 'photo', 'details', 'details_extra', 'submit', 'submit_email', 'submit_name', 'submit_set_password', 'submit_password', 'submit_confirm', 'sent', 'report_entidad', 'details_entidad', 'ver_report_entidad', 'details_report_entidad','details_gestion_entidad'
         ],
 
         usedBefore: 0,
+        entidad:0,
         isLoggedIn: 0,
         isOffline: 0,
         initialized: 0,
@@ -83,11 +84,19 @@ var tpl = {
         iPhoneModel: 0,
         uploadTimeout: CONFIG.UPLOAD_TIMEOUT || 120000,
         testing: 0,
-
+        //
+        currentDraftEntidad: new FMS.Draft(),
         currentDraft: new FMS.Draft(),
         allDrafts: new FMS.Drafts(),
-
+        allDraftsEntidad: new FMS.Drafts(),
+        allReporteRegalias: new FMS.Drafts(), //Reportes regalias
+        allNewReportEntidad: new FMS.Drafts(),//Nuevos reportes
+        allClosedReportEntidad: new FMS.Drafts(),//Reportes cerrados
         reportToView: null,
+        numNewReportEntidad: 0,
+        numClosedReportEntidad: 0,
+        numReporteRegalias: 0,
+        tipoReporteEntidad: 0,
 
         online: function() {
             FMS.isOffline = 0;
@@ -191,21 +200,23 @@ var tpl = {
             helpContent.height(viewHeight - 60);
         },
 
-        setupHelp: function() {
+        setupHelp: function () {
             var help = $('#help'),
             helpContent = $('#helpContent'),
             viewWidth = $(window).width();
-
             var template;
-            if ( !FMS.usedBefore ) {
-                template = _.template( tpl.get('initial_help') );
-            } else {
-                template = _.template( tpl.get('help') );
+            if (!FMS.usedBefore)
+            {
+                template = _.template(tpl.get('initial_help'));
+            }
+            else
+            {
+                template = _.template(tpl.get('help'));
             }
             helpContent.html(template());
 
-            if ( !help.hasClass('android2') ) {
-                if ( FMS.usedBefore ) {
+            if (!help.hasClass('android2')) {
+                if (FMS.usedBefore) {
                     FMS.setHelpHeight();
                 }
                 help.show();
@@ -260,6 +271,8 @@ var tpl = {
             if ( this.initialized == 1 ) {
                 return this;
             }
+            // Stop iOS scrolling the webview when it shows the keyboard
+            cordova.plugins.Keyboard.disableScroll(true);
             $('#load-screen').height( $(window).height() );
             FMS.initialized = 1;
             if ( navigator && navigator.splashscreen ) {

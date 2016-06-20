@@ -24,7 +24,12 @@
                 'save_offline': 'saveOffline',
                 'sent': 'sent',
                 'reports': 'reports',
-                'login': 'login'
+                'login': 'login',
+                'report_entidad': 'report_entidad',
+                'details_entidad': 'details_entidad',
+                'ver_report_entidad': 'ver_report_entidad',
+                'details_report_entidad': 'details_report_entidad',
+                'details_gestion_entidad': 'details_gestion_entidad'
             },
 
             initialize: function() {
@@ -144,6 +149,32 @@
             login: function() {
                 var loginView = new FMS.LoginView({ model: FMS.currentUser });
                 this.changeView(loginView);
+            },
+
+            report_entidad: function () {
+                var report_entidadView = new FMS.ReportEntidadView({ model: FMS.currentDraft });
+                this.changeView(report_entidadView);
+
+            },
+
+            details_entidad: function () {
+                var details_entidadView = new FMS.DetailsEntidadView({ model: FMS.currentDraft });
+                this.changeView(details_entidadView);
+            },
+
+            ver_report_entidad: function () {
+                var ver_report_entidadView = new FMS.VerReportEntidadView({ model: FMS.currentDraft });
+                this.changeView(ver_report_entidadView);
+            },
+
+            details_report_entidad: function () {
+                var details_report_entidadView = new FMS.DetailsReportEntidadView({ model: FMS.currentDraft });
+                this.changeView(details_report_entidadView);
+            },
+
+            details_gestion_entidad: function () {
+                var details_gestion_entidadView = new FMS.DetailsGestionEntidadView({ model: FMS.currentDraft });
+                this.changeView(details_gestion_entidadView);
             },
 
             changeView: function(view) {

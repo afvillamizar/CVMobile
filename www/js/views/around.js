@@ -76,6 +76,24 @@
                     this.locate();
                     this.displayButtons(false);
                 }
+                this.showHelp();
+            },
+            showHelp: function ()
+            {
+                var help = $('#help'),
+                helpContent = $('#helpContent'),
+                viewWidth = $(window).width();
+
+                var template;
+                if (!FMS.usedBefore)
+                {
+                    template = _.template(tpl.get('initial_help'));
+                }
+                else
+                {
+                    template = _.template(tpl.get('help'));
+                }
+                helpContent.html(template());
             },
 
             _back: function(e) {

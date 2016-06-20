@@ -1,14 +1,14 @@
-<div data-role="header" data-position="fixed">
-        <a id="reports-next-btn" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">Home</a>
-        <h1>Draft Reports</h1>
+﻿<div data-role="header" data-position="fixed" data-theme="b">
+        <a id="reports-next-btn" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">Inicio</a>
+        <h1>Reportes en borrador</h1>
 </div>
 <div id="drafts">
-    <p id="noreports" class="nodisplay">If you start compiling a report, but don't finish and send it, it'll appear in this menu so you can finish it later</p>
+    <p id="noreports" class="nodisplay">Si inicias un reporte, pero no logras terminarlo y enviarlo, aparecerá en este menú para que puedas hacerlo más tarde</p>
     <div id="report-list" class="nodisplay">
         <p class="notopmargin">
-        These are your draft, unsent reports. To finish and send them, open a report when online.
+        Estos son tus borradores, reportes sin enviar. Para finalizar y enviarlos, abre un reporte cuando te encuentres conectado a Internet.
         </p>
-        <ul data-role="listview" data-split-theme="c" data-inset="true" data-split-icon="delete" class="notopmargin reports">
+        <ul data-role="listview" data-split-theme="b" data-inset="true" data-split-icon="delete" class="notopmargin reports">
             <% drafts.each(function(draft) {
                 if ( draft ) {
                     var classes = [];

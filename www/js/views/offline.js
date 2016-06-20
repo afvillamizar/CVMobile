@@ -49,9 +49,9 @@
 
             toggleNextButton: function() {
                 if ( this.draftHasContent() ) {
-                    $('#offline-next-btn .ui-btn-text').text('Save');
+                    $('#offline-next-btn .ui-btn-text').text('Guardar');
                 } else {
-                    $('#offline-next-btn .ui-btn-text').text('Skip');
+                    $('#offline-next-btn .ui-btn-text').text('Omitir');
                 }
             },
 
@@ -90,7 +90,7 @@
                     that.model.set('file', file.toURL());
                     FMS.saveCurrentDraft();
 
-                    $('#photo-next-btn .ui-btn-text').text('Next');
+                    $('#photo-next-btn .ui-btn-text').text('Siguiente');
                     $('#display_photo').show();
                     $('#add_photo').hide();
                 });
@@ -115,7 +115,7 @@
                     FMS.saveCurrentDraft();
                     $('#photo').attr('src', '');
 
-                    $('#photo-next-btn .ui-btn-text').text('Skip');
+                    $('#photo-next-btn .ui-btn-text').text('Omitir');
                     $('#display_photo').hide();
                     $('#add_photo').show();
                 });

@@ -17,14 +17,21 @@
             },
 
             description: function() {
+                moment.locale('es');
                 var desc = '';
-                if ( this.get('title') ) {
+                if (this.get('title'))
+                {
                     desc += this.get('title');
-                } else {
-                    desc += 'Untitled draft';
+                    //Modificación Mayo 2016. Corrige problema de comparar la fecha del reporte con el valor actual. Español-Colombia
+                    desc += '<br><small>' + moment.utc(moment.utc(this.created).format('MM/DD/YYYY HH:mm:ss')).fromNow() + '</small>';
                 }
-                desc += '<br><small>' + moment.utc( this.get('created') ).fromNow() + '</small>';
-
+                else
+                {
+                    desc += 'Borrador sin t\u00EDtulo';
+                    //Modificación Abril 2016. Corrige problema de formato de fecha. Español-Colombia
+                    desc += '<br><small>' + moment.utc(moment.utc(this.created).format('MM/DD/YYYY HH:mm:ss')).fromNow() + '</small>';
+                }
+                //desc += '<br><small>' + moment.utc( this.get('created') ).fromNow() + '</small>';
                 return desc;
             },
 
@@ -48,6 +55,7 @@
     });
 })(FMS, Backbone, _, $, moment);
 
+//Se crea una colección del modelo Drafts.
 (function(FMS, Backbone, _, $) {
     _.extend( FMS, {
         Drafts: Backbone.Collection.extend({

@@ -1,25 +1,26 @@
-<div id="submit-header" data-role="header">
-    <h1>Your details</h1>
+﻿<div id="submit-header" data-role="header" data-theme="b">
+    <a id="reports-next-btn" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">Atrás</a>
+    <h1>Tus Detalles</h1>
 </div>
 
 <div data-role="content">
     <div class="inputcard">
         <div>
-            <input data-role="none" type="email" value="<%= user.email %>" name="email" id="form_email" placeholder="Please enter your email address" required>
+            <input data-role="none" type="email" value="<%= user.email %>" name="email" id="form_email" placeholder="Por favor, escribe tu dirección de correo electrónico" required>
         </div>
     </div>
 
     <p>
-    This app needs to send you a confirmation email before we can send your report to the council.
+    Esta aplicación necesita enviarle un correo de confirmación antes que podamos enviar su reporte a la entidad territorial.
     </p>
 
     <p>
-    To skip this step in future, you can set a password now.
+    Para omitir este paso en el futuro, puedes establecer una contraseña ahora.
     </p>
 
     <div class="bottom-btn">
-        <input data-role="button" data-theme="a" type="button" id="email_confirm" name="email_confirm" value="I don't want to set a password">
-        <input data-role="button" data-theme="a" type="button" id="set_password" name="set_password" value="I'd like to set a password">
-        <input data-role="button" data-theme="a" type="button" id="have_password" name="have_password" value="I've already got one - login">
+        <input data-role="button" data-theme="b" type="button" id="email_confirm" name="email_confirm" value="No quiero establecer una contraseña">
+        <input data-role="button" data-theme="b" type="button" id="set_password" name="set_password" value="Quiero establecer una contraseña">
+        <input data-role="button" data-theme="b" type="button" id="have_password" name="have_password" value="Ya tengo contraseña, iniciar sesión">
     </div>
 </div>
