@@ -1,0 +1,31 @@
+﻿<div data-role="header" data-position="fixed" data-theme="b">
+    <a id="reports-next-btn" data-icon="arrow-l" data-iconpos="left" class="ui-btn-left">Inicio</a>
+    <h1>Reportes Nuevos</h1>
+</div>
+<div id="drafts">
+    <p id="noreports" class="nodisplay">Si inicias un reporte, pero no logras terminarlo y enviarlo, va a aparecer en este menú para que puedas hacerlo más tarde</p>
+    <div id="report-list" class="nodisplay">
+        <p class="notopmargin">
+            Estos son los reportes nuevos que se han encontrado para tu gestión.
+        </p>
+        <ul data-role="listview" data-split-theme="b" data-inset="true" data-split-icon="delete" class="notopmargin reports">
+            <% drafts.each(function(draft) {
+            if ( draft ) {
+            var classes = [];
+            if ( draft.get('lat') ) {
+            classes.push('with_location');
+            }
+            if ( draft.get('file') ) {
+            classes.push('with_photo');
+            }
+            var draftClass = '';
+            if ( classes.length ) {
+            draftClass = 'class="' + classes.join(' ') + '"';
+            }
+            print( '
+            <li id="' + draft.id + '" ' + draftClass + '><a href="#" class="use_report">' + draft.description() + '</a><a class="del_report" href="#" title="delete">Delete</a></li>' );
+            }
+            } ); %>
+        </ul>
+    </div>
+</div>
