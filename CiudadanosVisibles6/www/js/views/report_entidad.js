@@ -86,6 +86,7 @@
                             newDraftRegalias.attributes.details = data.descriptions[index];
                             newDraftRegalias.attributes.lat = data.locations[index].lat;
                             newDraftRegalias.attributes.lon = data.locations[index].long;
+                            newDraftRegalias.attributes.category = 'in progress';
                             newDraftRegalias.id = data.id[index];
                             newDraftRegalias.url = data.url[index];
                             newDraftRegalias.created = data.date[index];
@@ -122,6 +123,7 @@
                             newDraftEntidad.attributes.details = data.descriptions[index];
                             newDraftEntidad.attributes.lat = data.locations[index].lat;
                             newDraftEntidad.attributes.lon = data.locations[index].long;
+                            newDraftEntidad.attributes.category = 'confirmed';
                             newDraftEntidad.id = data.id[index];
                             newDraftEntidad.url = data.url[index];
                             newDraftEntidad.created = data.date[index];
@@ -160,6 +162,7 @@
                             newReportEntidad.attributes.details = data.descriptions[index];
                             newReportEntidad.attributes.lat = data.locations[index].lat;
                             newReportEntidad.attributes.lon = data.locations[index].long;
+                            newReportEntidad.attributes.category = 'investigating';
                             newReportEntidad.id = data.id[index];
                             newReportEntidad.url = data.url[index];
                             newReportEntidad.created = data.date[index];
@@ -195,6 +198,7 @@
                             closedReportEntidad.attributes.details = data.descriptions[index];
                             closedReportEntidad.attributes.lat = data.locations[index].lat;
                             closedReportEntidad.attributes.lon = data.locations[index].long;
+                            closedReportEntidad.attributes.category = 'fixed';
                             closedReportEntidad.id = data.id[index];
                             closedReportEntidad.url = data.url[index];
                             closedReportEntidad.created = data.date[index];

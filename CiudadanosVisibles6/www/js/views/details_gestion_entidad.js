@@ -20,7 +20,14 @@
 
             afterDisplay: function ()
             {
-                $('#divEstados').html('<select id="estados"><option value="confirmed">Abierto</option><option value="investigating">Investigando</option><option value="action scheduled">Acción programada</option><option value="in progress">Procesando</option><option value="duplicate">Duplicado</option><option value="unable to fix">No es posible solucionar</option><option value="not responsible">No es responsable</option><option value="fixed">Arreglado</option></select>')
+                var estados = '<select id="estados"><option value="confirmed">Abierto</option><option value="investigating">Investigando</option><option value="action scheduled">Acción programada</option><option value="in progress">Procesando</option><option value="duplicate">Duplicado</option><option value="unable to fix">No es posible solucionar</option><option value="not responsible">No es responsable</option><option value="fixed">Arreglado</option></select>';
+                if (FMS.currentDraftEntidad.attributes.category == 'fixed')
+                    estados = '<select id="estados"><option value="fixed">Arreglado</option><option value="confirmed">Abierto</option><option value="investigating">Investigando</option><option value="action scheduled">Acción programada</option><option value="in progress">Procesando</option><option value="duplicate">Duplicado</option><option value="unable to fix">No es posible solucionar</option><option value="not responsible">No es responsable</option></select>';
+                if (FMS.currentDraftEntidad.attributes.category == 'investigating')
+                    estados = '<select id="estados"><option value="investigating">Investigando</option><option value="fixed">Arreglado</option><option value="confirmed">Abierto</option><option value="action scheduled">Acción programada</option><option value="in progress">Procesando</option><option value="duplicate">Duplicado</option><option value="unable to fix">No es posible solucionar</option><option value="not responsible">No es responsable</option></select>';
+                if (FMS.currentDraftEntidad.attributes.category == 'in progress')
+                    estados = '<select id="estados"><option value="in progress">Procesando</option><option value="investigating">Investigando</option><option value="fixed">Arreglado</option><option value="confirmed">Abierto</option><option value="action scheduled">Acción programada</option><option value="duplicate">Duplicado</option><option value="unable to fix">No es posible solucionar</option><option value="not responsible">No es responsable</option></select>';
+                $('#divEstados').html(estados);
             },
 
             onClickButtonPrev: function (e) {
