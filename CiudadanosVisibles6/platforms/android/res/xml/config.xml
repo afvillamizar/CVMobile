@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget android-versionCode="42" id="org.mysociety.FixMyStreet" version="2.0.7" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <preference name="loglevel" value="DEBUG" />
+    <feature name="Whitelist">
+        <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    </feature>
+    <feature name="File">
+        <param name="android-package" value="org.apache.cordova.file.FileUtils" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Capture">
+        <param name="android-package" value="org.apache.cordova.mediacapture.Capture" />
+    </feature>
+    <feature name="Device">
+        <param name="android-package" value="org.apache.cordova.device.Device" />
+    </feature>
+    <feature name="FileTransfer">
+        <param name="android-package" value="org.apache.cordova.filetransfer.FileTransfer" />
+    </feature>
+    <feature name="Geolocation">
+        <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
+    </feature>
+    <feature name="InAppBrowser">
+        <param name="android-package" value="org.apache.cordova.inappbrowser.InAppBrowser" />
+    </feature>
+    <feature name="Media">
+        <param name="android-package" value="org.apache.cordova.media.AudioHandler" />
+    </feature>
+    <feature name="NetworkStatus">
+        <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
+    </feature>
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    </feature>
+    <feature name="SplashScreen">
+        <param name="android-package" value="org.apache.cordova.splashscreen.SplashScreen" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="StatusBar">
+        <param name="android-package" value="org.apache.cordova.statusbar.StatusBar" />
+        <param name="onload" value="true" />
+    </feature>
+    <feature name="Keyboard">
+        <param name="android-package" value="io.ionic.keyboard.IonicKeyboard" />
+        <param name="onload" value="true" />
+    </feature>
+    <icon density="ldpi" src="res/icons/android/icon-36-ldpi.png" />
+    <icon density="mdpi" src="res/icons/android/icon-48-mdpi.png" />
+    <icon density="hdpi" src="res/icons/android/icon-72-hdpi.png" />
+    <icon density="xhdpi" src="res/icons/android/icon-96-xhdpi.png" />
+    <icon density="xxhdpi" src="res/icons/android/icon-144-xxhdpi.png" />
+    <icon density="xxxhdpi" src="res/icons/android/icon-192-xxxhdpi.png" />
+    <name>Ciudadanos Visibles</name>
+    <description>
+        Report problems on FixMyStreet
+    </description>
+    <author email="team@mysociety.org" href="http://mysociety.org">
+        mySociety
+    </author>
+    <content src="index.html" />
+    <access origin="http://127.0.0.1*" />
+    <access origin="*://*.openstreetmap.org" />
+    <access origin="*://*.opencyclemap.org" />
+    <access origin="*://tilma.mysociety.org" />
+    <access origin="*://a.tilma.mysociety.org" />
+    <access origin="*://b.tilma.mysociety.org" />
+    <access origin="*://c.tilma.mysociety.org" />
+    <access origin="*://a-tilma.mysociety.org" />
+    <access origin="*://b-tilma.mysociety.org" />
+    <access origin="*://c-tilma.mysociety.org" />
+    <access origin="*://dev.virtualearth.net" />
+    <access origin="*://ecn.t0.tiles.virtualearth.net" />
+    <access origin="*://ecn.t1.tiles.virtualearth.net" />
+    <access origin="*://ecn.t2.tiles.virtualearth.net" />
+    <access origin="*://ecn.t3.tiles.virtualearth.net" />
+    <access origin="*://ciudadanosvisibles2.cloudapp.net" />
+    <preference name="android-minSdkVersion" value="16" />
+    <preference name="orientation" value="portrait" />
+    <preference name="StatusBarOverlaysWebView" value="false" />
+    <preference name="StatusBarStyle" value="default" />
+    <preference name="AndroidPersistentFileLocation" value="Compatibility" />
+    <preference name="StatusBarBackgroundColor" value="#F6BE41" />
+    <preference name="deployment-target" value="6.0" />
+</widget>

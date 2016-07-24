@@ -1,0 +1,58 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "io.cordova.myappaf4096"
+        },
+        "cordova-plugin-camera": {
+            "PACKAGE_NAME": "io.cordova.myappaf4096"
+        },
+        "cordova-plugin-media-capture": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-geolocation": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-media": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-dialogs": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        },
+        "ionic-plugin-keyboard": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "io.cordova.myappaf4096"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "org.mysociety.FixMyStreet"
+        }
+    }
+}
